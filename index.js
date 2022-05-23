@@ -29,16 +29,16 @@ function myMap(collection, callBack ) {
  }
 
  function myReduce(collection, callBack, acc) {
-     let newArr = isArray(collection);
-     let counter;
-     let final;
-     
+     let newArr = isArray(collection); 
      if (acc === undefined) {
-         acc = col[0];
+         acc = newArr[0];
          for (let i = 1; i < newArr.length; i++) {
-             let acc = callBack(acc, newArr[i], collection);
+            acc = callBack(acc, newArr[i], collection);
          }
-         
-     }
-     return acc
- }
+    } else {
+        for (let i = 0; i < newArr.length; i++) {
+            acc = callBack(acc, newArr[i], callBack);
+        }
+    }
+    return acc;
+}
